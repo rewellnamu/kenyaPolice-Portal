@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="logo">
+    <!-- Kenyan National Police Service logo -->
+    <img src="police.png" alt="Kenya Police Logo" width="36" height="36" style="vertical-align:middle; margin-right:8px;" />
+    Police Recruitment Portal
+  </div>
+
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+  <ul class="nav-links">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+    <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+    <li><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
+    <li><a routerLink="/applicant" routerLinkActive="active">Applicant</a></li>
+
+  </ul>
+</nav>
