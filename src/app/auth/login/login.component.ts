@@ -1,20 +1,34 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  standalone: true,
   selector: 'app-login',
-  imports: [ CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-   email = '';
-  password = '';
+  loginForm: FormGroup;
+  loginError: string | null = null;
 
-  onLogin() {
-    console.log('Logging in with', this.email, this.password);
-    // TODO: Connect to backend auth
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      // Call your auth service here
+      console.log('Logging in with', email, password);
+      this.loginError = null; // Clear any previous error
+    } else {
+      this.loginError = 'Please fill in all required fields correctly.';
+    }
   }
 }
